@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    
+    height:10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .links{
+    height: 100%;
+    width: 23%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+header .links a{
+    text-decoration: none;
+    color:black;
+    font-size:23px;
+}
+
+header .links #seclink{
+    background:black;
+    color: #FFFFFF;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.heading{
+    margin-left: 90px;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side{
+    height: 100vh;
+}
+
+.s1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.s1 img{
+   opacity: 0.08;
+   position: absolute;
+   
+}
+.s1 .items{
+    width:50%;
+    height:80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+   
+    
+}
+
+.s1 .items h1{
+  white-space: pre-wrap;
+  line-height: 55px;
+  font-weight: 800;
+  font-size: 55px;
+}
+
+.s1 .items p{
+    margin-top: 40px;
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+.s1 .items a{
+    margin-top: 40px;
+    padding: 15px 25px;
+    background: #333333;
+    color: #FFFFFF;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.s2{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.s2 .headphone{
+width:70%;
+height:60%;
+background-image: url('https://www.urbanears.com/on/demandware.static/-/Sites-zs-master-catalog/default/dw3ea85f87/images/urbanears/headphones/plattan-2-bluetooth/hi-res/Plattan2BT_Image_large_indigo@4x.png');
+background-size: contain;
+}
+
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    display: grid;
+    height: 400px;
+    width: 100%;
+    background-color:  #333333;
+}
+
+.container{
+ 
+    height: 80%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 99px;
+    border-bottom:3px solid white;
+}
+
+.item{
+  height: 50%; 
+  line-height: 27px;
+   display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: #FFFFFF;
+}
+
+.item a{
+    text-decoration: none;
+    color: white;
+}
+.item h1{
+    margin-bottom: 15px;
+}
+
