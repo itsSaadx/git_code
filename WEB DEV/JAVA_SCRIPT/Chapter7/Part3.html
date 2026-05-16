@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener</title>
+</head>
+<body>
+    <button class="btn">Click</button>
+
+    <script>
+   let selectbtn = document.querySelector('.btn')
+
+   let behaviour = event => console.log("i am clicked")
+   selectbtn.addEventListener('click',behaviour);
+   
+   
+   let printdate = event => console.log(new Date())
+   selectbtn.addEventListener('click',printdate);
+
+   selectbtn.removeEventListener('click',behaviour) 
+
+    </script>
+</body>
+</html>

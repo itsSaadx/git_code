@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 7</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn{
+         margin-top: 80px;   
+         border-radius:15px;
+         background-color: red;
+         color: white;
+         padding: 10px 20px;
+        }
+     
+        .btn:focus{
+          transition: 0.5;  
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">Subscribe</button>
+    <script>
+        // let multiply = (n1,n2) => n1*n2
+        // console.log(multiply(3,4))
+   
+
+//     let runTwice = fn => {
+//     fn();
+//     fn();
+//     fn();
+//     fn();
+//     fn();
+// }
+
+// let twice = () => {
+//     console.log("saad");
+// };
+
+// runTwice(twice);
+// setTimeout(btnf,2000);
+  
+// let growbtn = document.querySelector('.btn');
+
+// growbtn.addEventListener('click', () => {   // ← EVENT FUNCTION
+
+//     setTimeout(() => {                      // ← setTimeout start
+
+//         growbtn.style.width = '220px';
+//         growbtn.style.height = '42px';
+
+//     }, 2000);                               
+
+// });
+let arr = [5,5,1,6,8,7,65,3]
+let sum=0
+arr.forEach (num => sum += num) 
+console.log(sum)
+    </script>
+</body>
+</html>

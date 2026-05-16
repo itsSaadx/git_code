@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set Time & Interval</title>
+</head>
+<body>
+    <script>
+        let alarm = () => console.log(`Subah ho gayi uth ja:${new Date()}`)
+    //   let timerid = setTimeout(alarm,5000) 
+    //   console.log("timer id: " + timerid)
+    //   clearTimeout(timerid)
+        
+   let Intervalid = setInterval(alarm,2000);
+   setTimeout(() => clearInterval(Intervalid),5000)
+    </script>
+</body>
+</html>

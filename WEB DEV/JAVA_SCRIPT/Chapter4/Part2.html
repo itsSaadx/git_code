@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            company : 'mango',
+            price : 877, 
+            item : 't-shirt',
+            displayitem: function(){
+                console.log(`the item is: ${obj.item}`);
+            }
+        };
+
+        console.log(obj.company);
+        console.log(obj.price);
+        console.log(obj.item);
+        obj.item = "jeans"
+        console.log(obj.item);
+        console.log(obj['item']);
+
+       let property_name = 'item';
+        console.log(obj[property_name]);
+
+        delete obj.price;
+        console.log(obj.price);
+        
+        obj.displayitem();
+        
+        
+    </script>
+</body>
+</html>

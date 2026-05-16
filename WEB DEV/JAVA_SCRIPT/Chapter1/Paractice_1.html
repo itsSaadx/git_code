@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(add,whish) items</title>
+    <style>
+        .addtobag {
+            padding: 12px 30px;
+            background: lightseagreen;
+            border-radius: 25px;
+            
+        }
+
+        .whishlist {
+            padding: 20px 30px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="addtobag" onclick="
+    cartquantity = cartquantity + 1;
+     document.querySelector('#cart-summary').
+            innerText = `your bag has ${cartquantity} items`;  
+    ">add to bag</button>
+
+
+    <button class="whishlist" onclick=" cartquantity = cartquantity + 1;
+     document.querySelector('#cart-summary').
+            innerText = `your bag has ${cartquantity} items`;  "> ❤️ whishlist</button>
+
+
+    <button class="addtobag" onclick=" cartquantity = cartquantity + 2;
+     document.querySelector('#cart-summary').
+            innerText = `your bag has ${cartquantity} items`;  ">add 1+1 sale_item</button>
+    <h1 id="cart-summary">your bag has 0 items</h1>
+
+    <script>
+        let cartquantity = 5;
+        document.querySelector('#cart-summary').
+            innerText = `your bag has ${cartquantity} items`;  
+    </script>
+</body>
+
+</html>

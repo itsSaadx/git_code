@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Tickiting</title>
+</head>
+<body>
+  <script>
+    let gender = 'male';
+    let age = 21;
+    let discount ;
+
+    if(age<=5){
+    discount = '100%';
+    }
+
+    else if(age<=8){
+    discount = 'half ticket';
+    }
+  
+
+    else if(gender === 'female'){
+    discount = '50%';
+    }
+
+     else if (age>=65){
+        discount = '70%';
+    }
+
+    else{
+        discount = '0%';
+    }
+
+    console.log(`Tickit Discount:  ${discount}`);
+  </script>  
+</body>
+</html>

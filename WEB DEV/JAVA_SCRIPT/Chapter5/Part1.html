@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason object</title>
+</head>
+<body>
+    <script>
+        // product = {
+        //     item: "shirt",
+        //     price: 888,
+        //     rating : {
+        //     star: 5,    
+        //     nofreviews: 556,
+        //     },
+        // };
+
+        // console.log(product);
+        // console.log(typeof product);
+        // let prdstr = JSON.stringify(product);
+        // console.log(prdstr);
+        // console.log(typeof prdstr);
+        // let prdobj = JSON.parse(prdstr);
+        // console.log(prdobj);
+        // console.log(typeof product);
+
+
+        product = {
+            item: "shirt",
+            price: 888,
+            rating : {
+            star: 5,    
+            nofreviews: 556,
+            },
+        };
+
+       localStorage.setItem('product' , JSON.stringify(product))
+       localStorage.setItem('item' , 'shirt')
+       localStorage.setItem('price' , '888')
+       localStorage.setItem('star' , '5')
+       localStorage.removeItem('price')
+       localStorage.clear()
+
+       console.log(localStorage.getItem('item'))
+
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 5</title>
+    <style>
+     .js-even{
+        background-color: red;
+     }
+
+     .js-odd{
+        background-color: greenyellow;
+     }
+    </style>
+</head>
+<button class="btn" onclick="btnpressed()">click</button>
+<body>
+    <script>
+        let presscount = localStorage.getItem('presscount') || 0    
+    function btnpressed(){
+        console.log(presscount)
+        presscount++ 
+        let button = document.querySelector('.btn')
+        button.innerText = presscount
+
+        if(presscount % 2 === 0){
+         button.classList.remove('js-odd')   
+         button.classList.add('js-even')
+        }
+        else{
+         button.classList.remove('js-even')   
+         button.classList.add('js-odd')
+        }
+    
+        localStorage.setItem('presscount',`${presscount}`)
+        
+    }
+    </script>
+</body>
+</html>
