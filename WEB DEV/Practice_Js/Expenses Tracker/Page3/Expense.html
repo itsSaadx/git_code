@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Transaction</title>
+  <link rel="stylesheet" href="Expense.css">
+</head>
+
+<body>
+
+  <div class="heading">
+    <h1>Add Expense Transaction</h1>
+  </div>
+
+<main class="container">
+
+    <!-- FORM -->
+    <form class="expense-transaction-form">
+
+        <div class="item1st">
+            <label>Title</label>
+            <input type="text" class="expense-title-input" placeholder="Enter title">
+        </div>
+
+        <div class="item2nd">
+            <label>Amount</label>
+            <input type="number" class="expense-amount-input" placeholder="Enter amount">
+        </div>
+
+        <div class="item3rd">
+            <label>Date</label>
+            <input type="date" class="expense-date-input">
+        </div>
+
+        <button class="expense-add-btn">Add Expense</button>
+
+    </form>
+
+
+    <!-- TABLE -->
+    <table class="expense-transaction-table">
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody class="expense-table-body">
+
+        </tbody>
+
+    </table>
+
+</main>
+
+<script src="Expense.js"></script>
+
+</body>
+</html>

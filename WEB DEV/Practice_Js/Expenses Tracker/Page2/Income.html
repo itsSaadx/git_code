@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Income Transaction</title>
+  <link rel="stylesheet" href="Income.css">
+</head>
+
+<body>
+
+  <div class="heading">
+    <h1>Add Income Transaction</h1>
+</div>
+
+<main class="container">
+
+
+
+    <!-- FORM -->
+    <form class="expense-form">
+
+        <!-- title -->
+        <div class="item1st">
+            <label>Title</label>
+            <input 
+                type="text"
+                class="title-input"
+                placeholder="Enter title"
+            >
+        </div>
+
+        <!-- amount -->
+        <div class="item2nd">
+            <label>Amount</label>
+            <input 
+                type="number"
+                class="amount-input"
+                placeholder="Enter amount"
+            >
+        </div>
+
+        <!-- date -->
+        <div class="item3rd">
+            <label>Date</label>
+            <input 
+                type="date"
+                class="date-input"
+            >
+        </div>
+
+        <!-- button -->
+        <button class="add-btn">
+            Add Transaction
+        </button>
+
+    </form>
+
+
+    <!-- TABLE -->
+    <table class="expense-table">
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody class="tabelbody">
+
+        </tbody>
+
+    </table>
+
+</main>
+
+  <script src="Income.js"></script>
+
+</body>
+</html>

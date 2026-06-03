@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #a3ffba;
+    padding: 30px;
+    overflow-x: hidden;
+}
+
+/* ================= HEADING ================= */
+
+.heading{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.heading h1{
+    color: #10B981;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* ================= SUMMARY CARD ================= */
+
+.income-card{
+    width: 320px;
+    max-width: 90%;
+    background: #071428;
+    color: white;
+
+    border-top: 5px solid #10B981;
+
+    padding: 25px;
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.income-card p{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* ================= FORM ================= */
+
+.expense-form{
+    width: 45%;
+    min-width: 320px;
+    max-width: 600px;
+
+    background: white;
+
+    padding: 30px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    border-top: 5px solid #10B981;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+/* ================= INPUTS ================= */
+
+.item1st,
+.item2nd,
+.item3rd{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label{
+    font-weight: bold;
+    color: #1F2937;
+}
+
+input{
+    padding: 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus{
+    border-color: #10B981;
+    box-shadow: 0 0 8px rgba(16,185,129,.4);
+}
+
+/* ================= BUTTON ================= */
+
+.add-btn{
+    padding: 14px;
+    border: none;
+    background: linear-gradient(135deg,#10B981,#34D399);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.add-btn:hover{
+    transform: translateY(-3px);
+}
+
+.add-btn:active{
+    transform: scale(.98);
+}
+
+/* ================= TABLE ================= */
+
+.expense-table{
+    width: 90%;
+    max-width: 900px;
+    border-collapse: collapse;
+
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+    display: none;
+}
+
+/* mobile scroll fix */
+.table-wrapper{
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* ================= TABLE HEADER ================= */
+
+.expense-table th{
+    background: #10B981;
+    color: white;
+    padding: 18px;
+}
+
+/* ================= TABLE DATA ================= */
+
+.expense-table td{
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #E5E7EB;
+    color: #111827;
+}
+
+/* ================= ROW HOVER ================= */
+
+.expense-table tbody tr:hover{
+    background: #F9FAFB;
+}
+
+/* ================= DELETE BUTTON ================= */
+
+.delete-btn{
+    background: #EF4444;
+    padding: 10px 15px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.delete-btn:hover{
+    background: #DC2626;
+    transform: translateY(-2px);
+}
+
+.delete-btn:active{
+    transform: scale(.97);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 900px){
+
+    .heading h1{
+        font-size: 2.2rem;
+    }
+
+    .expense-form{
+        width: 90%;
+    }
+
+    .income-card{
+        width: 90%;
+    }
+
+    .expense-table{
+        width: 100%;
+    }
+}
+
+@media(max-width: 500px){
+
+    body{
+        padding: 15px;
+    }
+
+    .heading h1{
+        font-size: 1.8rem;
+    }
+
+    input{
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .add-btn{
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .expense-table th,
+    .expense-table td{
+        font-size: 13px;
+        padding: 10px;
+    }
+}
