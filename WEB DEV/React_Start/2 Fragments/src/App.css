@@ -1,0 +1,10 @@
+.heading{
+    text-align:center;
+    background: rgb(255, 243, 243);
+}
+
+.text{
+    font-weight: 900;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(0, 0, 0);
+}

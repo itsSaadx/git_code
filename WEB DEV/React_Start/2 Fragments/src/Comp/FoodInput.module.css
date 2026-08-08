@@ -1,0 +1,10 @@
+.inp{
+    width: 100%;
+    margin: 10px 5px;
+    padding: 10px 20px;
+}
+
+.inp:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgb(105, 226, 240);
+}

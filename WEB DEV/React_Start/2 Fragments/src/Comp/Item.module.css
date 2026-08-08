@@ -1,0 +1,16 @@
+.item {
+    background: rgb(241, 240, 240);
+   
+    list-style: none;
+}
+
+.spanitem{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: bolder;
+    color: rgb(0, 37, 202);
+}
+
+.btn{
+    float: right;
+    margin: 5px;
+}
