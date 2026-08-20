@@ -1,0 +1,766 @@
+/* =========================================================
+   QUEUECARE — HERO SECTION (Redesigned)
+   ---------------------------------------------------------
+   Theme: "Live queue, no waiting rooms."
+   Signature element: a floating "Now Serving" ticket badge
+   + an animated patient-queue mockup panel (instead of a
+   generic stock photo) — because QueCare IS a queue, so the
+   hero should visually show one, live.
+
+   OPTIONAL MARKUP (fully backward compatible — if you don't
+   add these, .hero-right/img still works exactly as before):
+
+   <section class="hero">
+     <div class="hero-left">
+       <span class="hero-eyebrow">
+         <span class="eyebrow-dot"></span> Live clinic queue
+       </span>
+       <h1>Your headline</h1>
+       <p>Your copy</p>
+       <button>Get Started <span>→</span></button>
+     </div>
+
+     <div class="hero-right">
+       <!-- Option A: keep your existing <img> — still styled -->
+       <img src="..." alt="" />
+
+       <!-- Option B: use the built-in live mockup instead -->
+       <div class="queue-mockup">
+         <div class="queue-mockup__header">
+           <span class="qm-dot qm-dot--red"></span>
+           <span class="qm-dot qm-dot--amber"></span>
+           <span class="qm-dot qm-dot--green"></span>
+           <span class="qm-title">Front Desk · Live Queue</span>
+         </div>
+         <ul class="queue-list">
+           <li class="queue-row queue-row--serving">
+             <span class="qr-num">04</span>
+             <span class="qr-name">Now Serving</span>
+             <span class="qr-status qr-status--serving">In room</span>
+           </li>
+           <li class="queue-row"><span class="qr-num">05</span><span class="qr-name">Waiting</span><span class="qr-status qr-status--waiting">Waiting</span></li>
+           <li class="queue-row"><span class="qr-num">06</span><span class="qr-name">Waiting</span><span class="qr-status qr-status--waiting">Waiting</span></li>
+           <li class="queue-row"><span class="qr-num">07</span><span class="qr-name">Waiting</span><span class="qr-status qr-status--waiting">Waiting</span></li>
+         </ul>
+       </div>
+
+       <!-- floating ticket badge, sits on the corner -->
+       <div class="live-badge">
+         <span class="live-badge__dot"></span>
+         <span class="live-badge__label">Now Serving</span>
+         <span class="live-badge__num">#042</span>
+       </div>
+     </div>
+   </div>
+========================================================= */
+
+:root {
+  /* ---- Color tokens ---- */
+  --qc-navy:      #0B2E33;   /* deep ink / headline */
+  --qc-teal:      #146F6C;   /* primary brand */
+  --qc-teal-deep: #0D5451;   /* hover / active */
+  --qc-mist:      #EAF7F5;   /* page wash */
+  --qc-mist-2:    #DCF0ED;   /* secondary wash */
+  --qc-paper:     #FFFFFF;
+  --qc-coral:     #FF6B4E;   /* single accent — urgency / "called" */
+  --qc-coral-deep:#E85536;
+  --qc-amber:     #FFB020;   /* waiting state, used sparingly */
+  --qc-slate:     #5B7280;   /* body text */
+  --qc-line:      #D7ECE9;   /* hairline borders */
+
+  /* ---- Type tokens ---- */
+  --qc-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --qc-font-body:     "Inter", "Segoe UI", system-ui, sans-serif;
+  --qc-font-mono:     "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 4rem;
+
+  padding: 4rem 7%;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(20, 111, 108, 0.05) 0, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(255, 107, 78, 0.05) 0, transparent 45%),
+    var(--qc-mist);
+
+  font-family: var(--qc-font-body);
+
+  overflow: hidden;
+}
+
+/* faint clinic-form dot grid — subject-specific texture, not decoration */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: radial-gradient(var(--qc-teal) 1px, transparent 1px);
+  background-size: 28px 28px;
+
+  opacity: 0.05;
+
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero::before {
+    animation: driftGrid 40s linear infinite;
+  }
+}
+
+@keyframes driftGrid {
+  from { background-position: 0 0; }
+  to   { background-position: 280px 280px; }
+}
+
+
+/* =========================================
+   HERO LEFT
+========================================= */
+
+.hero-left {
+  position: relative;
+  z-index: 1;
+
+  width: 50%;
+
+  animation: heroText 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 0 0 1.1rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.6rem;
+
+  background: var(--qc-paper);
+  border: 1px solid var(--qc-line);
+  border-radius: 999px;
+
+  color: var(--qc-teal-deep);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  box-shadow: 0 4px 14px rgba(11, 46, 51, 0.06);
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+
+  background: var(--qc-coral);
+
+  box-shadow: 0 0 0 rgba(255, 107, 78, 0.5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow-dot {
+    animation: livePulse 1.8s ease-out infinite;
+  }
+}
+
+.hero-left h1 {
+  margin: 0 0 1.2rem;
+
+  max-width: 700px;
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+
+  background: linear-gradient(100deg, var(--qc-navy) 60%, var(--qc-teal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-left p {
+  max-width: 560px;
+
+  margin: 0 0 2rem;
+
+  color: var(--qc-slate);
+
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   HERO BUTTON
+========================================= */
+
+.hero-left button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.4rem;
+
+  padding: 0.9rem 1.5rem;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, var(--qc-teal) 0%, var(--qc-teal-deep) 100%);
+
+  color: var(--qc-paper);
+
+  font-family: var(--qc-font-body);
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(20, 111, 108, 0.22);
+
+  overflow: hidden;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* shine sweep on hover — subtle, single use of the trick */
+.hero-left button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+
+  width: 40%;
+  height: 100%;
+
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+}
+
+.hero-left button:hover {
+  background: linear-gradient(135deg, var(--qc-teal-deep) 0%, #0a4644 100%);
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 14px 30px rgba(20, 111, 108, 0.3);
+}
+
+.hero-left button:hover::after {
+  animation: shineSweep 0.9s ease forwards;
+}
+
+.hero-left button:active {
+  transform: translateY(-1px);
+}
+
+.hero-left button:focus-visible {
+  outline: 2px solid var(--qc-coral);
+  outline-offset: 3px;
+}
+
+.hero-left button span {
+  margin-left: 0.2rem;
+
+  transition: transform 0.25s ease;
+}
+
+.hero-left button:hover span {
+  transform: translateX(4px);
+}
+
+@keyframes shineSweep {
+  to { left: 130%; }
+}
+
+
+/* =========================================
+   HERO RIGHT
+========================================= */
+
+.hero-right {
+  position: relative;
+
+  width: 48%;
+  max-width: 600px;
+
+  height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+
+  background: var(--qc-paper);
+
+  border: 1px solid var(--qc-line);
+  border-radius: 24px;
+
+  box-shadow: 0 18px 45px rgba(11, 46, 51, 0.12);
+
+  overflow: visible; /* so the floating badge & pulse ring can extend past the edge */
+
+  animation: heroImage 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* sonar pulse ring behind the panel — "vitals" motif, tied to a live queue */
+.hero-right::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+
+  border: 1.5px solid var(--qc-teal);
+  border-radius: 30px;
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-right::before {
+    animation: sonarPing 3.2s ease-out 1.2s infinite;
+  }
+}
+
+@keyframes sonarPing {
+  0%   { opacity: 0.35; transform: scale(0.97); }
+  70%  { opacity: 0; transform: scale(1.045); }
+  100% { opacity: 0; transform: scale(1.045); }
+}
+
+.hero-right:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 25px 55px rgba(11, 46, 51, 0.18);
+}
+
+
+/* =========================================
+   HERO IMAGE (fallback / Option A)
+========================================= */
+
+.hero-right img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 19px;
+
+  transition: transform 0.5s ease;
+}
+
+.hero-right:hover img {
+  transform: scale(1.025);
+}
+
+
+/* =========================================
+   QUEUE MOCKUP (Option B — the signature panel)
+========================================= */
+
+.queue-mockup {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--qc-paper);
+  border-radius: 19px;
+  overflow: hidden;
+}
+
+.queue-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.9rem 1.1rem;
+
+  background: var(--qc-mist-2);
+  border-bottom: 1px solid var(--qc-line);
+}
+
+.qm-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.qm-dot--red   { background: #FF8080; }
+.qm-dot--amber { background: var(--qc-amber); }
+.qm-dot--green { background: #57C79A; }
+
+.qm-title {
+  margin-left: 0.6rem;
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.queue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.queue-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+
+  padding: 0.85rem 1rem;
+
+  background: var(--qc-mist);
+  border: 1px solid var(--qc-line);
+  border-radius: 12px;
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  animation: rowIn 0.5s ease forwards;
+}
+
+.queue-row:nth-child(1) { animation-delay: 0.35s; }
+.queue-row:nth-child(2) { animation-delay: 0.5s; }
+.queue-row:nth-child(3) { animation-delay: 0.65s; }
+.queue-row:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes rowIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.queue-row--serving {
+  background: linear-gradient(90deg, rgba(255, 107, 78, 0.08), rgba(255, 107, 78, 0.02));
+  border-color: rgba(255, 107, 78, 0.35);
+}
+
+.qr-num {
+  min-width: 34px;
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.qr-name {
+  flex: 1;
+
+  color: var(--qc-slate);
+
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.qr-status {
+  padding: 0.25rem 0.65rem;
+
+  border-radius: 999px;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.qr-status--serving {
+  background: var(--qc-coral);
+  color: var(--qc-paper);
+}
+
+.qr-status--waiting {
+  background: var(--qc-mist-2);
+  color: var(--qc-teal-deep);
+}
+
+
+/* =========================================
+   LIVE BADGE (floating ticket, signature detail)
+========================================= */
+
+.live-badge {
+  position: absolute;
+  left: -18px;
+  bottom: -22px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  padding: 0.75rem 1.1rem;
+
+  background: var(--qc-navy);
+  border-radius: 14px;
+
+  box-shadow: 0 14px 30px rgba(11, 46, 51, 0.35);
+
+  animation: heroImage 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .live-badge {
+    animation:
+      heroImage 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both,
+      badgeFloat 3.6s ease-in-out 1.5s infinite;
+  }
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.live-badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: var(--qc-coral);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .live-badge__dot {
+    animation: livePulse 1.8s ease-out infinite;
+  }
+}
+
+.live-badge__label {
+  color: rgba(255, 255, 255, 0.7);
+
+  font-family: var(--qc-font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.live-badge__num {
+  color: var(--qc-paper);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(255, 107, 78, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0); }
+}
+
+
+/* =========================================
+   ENTRANCE ANIMATIONS
+========================================= */
+
+@keyframes heroText {
+  from { opacity: 0; transform: translateX(-25px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes heroImage {
+  from { opacity: 0; transform: translateX(25px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-left,
+  .hero-right,
+  .live-badge,
+  .queue-row {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 950px) {
+
+  .hero {
+    min-height: auto;
+
+    flex-direction: column;
+
+    padding: 4rem 6%;
+
+    gap: 3rem;
+
+    text-align: center;
+  }
+
+  .hero-left {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-left h1 {
+    max-width: 750px;
+  }
+
+  .hero-left p {
+    max-width: 650px;
+  }
+
+  .hero-right {
+    width: 100%;
+
+    max-width: 650px;
+
+    height: 450px;
+  }
+
+  .live-badge {
+    left: 50%;
+    bottom: -20px;
+
+    transform: translateX(-50%);
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-6px); }
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 3rem 5%;
+
+    gap: 2.5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .hero-left h1 {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+
+    letter-spacing: -0.02em;
+  }
+
+  .hero-left p {
+    font-size: 0.98rem;
+
+    line-height: 1.6;
+  }
+
+  .hero-left button {
+    width: 100%;
+    max-width: 280px;
+
+    padding: 0.9rem 1.2rem;
+  }
+
+  .hero-right {
+    height: 380px;
+
+    border-radius: 18px;
+
+    padding: 0.35rem;
+  }
+
+  .hero-right img {
+    border-radius: 14px;
+  }
+
+  .qm-title {
+    font-size: 0.7rem;
+  }
+
+  .qr-name {
+    font-size: 0.8rem;
+  }
+
+  .live-badge {
+    padding: 0.6rem 0.9rem;
+    bottom: -16px;
+  }
+
+  .live-badge__label {
+    display: none; /* keep it compact on small screens, number still tells the story */
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .hero {
+    padding: 2.5rem 4%;
+  }
+
+  .hero-left h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-right {
+    height: 320px;
+  }
+
+  .queue-row {
+    padding: 0.65rem 0.8rem;
+  }
+}
