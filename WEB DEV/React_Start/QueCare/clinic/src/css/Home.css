@@ -1,0 +1,579 @@
+/* =========================================================
+   QUEUECARE — HOME PAGE
+   ---------------------------------------------------------
+   Same design system as the hero (hero.css): reuses the
+   navy/teal/coral/mist palette, Sora + Inter + JetBrains Mono
+   type stack, and the "staggered live reveal" motion motif
+   so the two pages feel like one product, not two templates.
+
+   OPTIONAL MARKUP (fully backward compatible — without these
+   the section still works exactly as before):
+
+   <div class="clinic-timing">
+     <h3>Clinic Hours</h3>
+     <span class="clinic-status">
+       <span class="clinic-status__dot"></span> Open now
+     </span>
+     <p>Mon–Sat, 9am–7pm</p>
+   </div>
+
+   <div class="service-card">
+     <span class="service-icon" aria-hidden="true">
+       <!-- any inline SVG icon, 20x20 -->
+     </span>
+     <h3>Service name</h3>
+     <p>Service description</p>
+   </div>
+========================================================= */
+
+:root {
+  --qc-navy:      #0B2E33;
+  --qc-teal:      #146F6C;
+  --qc-teal-deep: #0D5451;
+  --qc-mist:      #EAF7F5;
+  --qc-mist-2:    #DCF0ED;
+  --qc-paper:     #FFFFFF;
+  --qc-coral:     #FF6B4E;
+  --qc-coral-deep:#E85536;
+  --qc-amber:     #FFB020;
+  --qc-slate:     #5B7280;
+  --qc-line:      #D7ECE9;
+
+  --qc-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --qc-font-body:     "Inter", "Segoe UI", system-ui, sans-serif;
+  --qc-font-mono:     "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+
+/* =========================================
+   PAGE WRAPPER
+========================================= */
+
+.clinic-main {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 0 0 5rem;
+
+  background:
+    radial-gradient(circle at 90% 0%, rgba(20, 111, 108, 0.06) 0, transparent 40%),
+    var(--qc-mist);
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-body);
+
+  overflow: hidden;
+}
+
+/* faint dot-grid, same texture language as the hero */
+.clinic-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: radial-gradient(var(--qc-teal) 1px, transparent 1px);
+  background-size: 28px 28px;
+
+  opacity: 0.04;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   CLINIC INFORMATION STRIP
+========================================= */
+
+.clinic-info {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2rem;
+
+  padding: 3rem 4rem;
+
+  background: var(--qc-paper);
+
+  border-bottom: 1px solid var(--qc-line);
+  box-shadow: 0 8px 30px rgba(11, 46, 51, 0.06);
+}
+
+.clinic-header,
+.doctor-details,
+.clinic-timing,
+.contact-details {
+  padding: 0.5rem;
+
+  opacity: 0;
+  transform: translateY(16px);
+
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.clinic-header  { animation-delay: 0.05s; }
+.doctor-details { animation-delay: 0.15s; }
+.clinic-timing  { animation-delay: 0.25s; }
+.contact-details{ animation-delay: 0.35s; }
+
+
+/* =========================================
+   CLINIC HEADER
+========================================= */
+
+.clinic-info h2 {
+  margin: 0 0 0.8rem;
+
+  font-family: var(--qc-font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+
+  color: var(--qc-navy);
+}
+
+.clinic-header p {
+  max-width: 420px;
+
+  color: var(--qc-slate);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   INFORMATION HEADINGS
+========================================= */
+
+.clinic-info h3 {
+  margin: 0 0 0.7rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-family: var(--qc-font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  color: var(--qc-teal-deep);
+}
+
+
+/* =========================================
+   INFORMATION TEXT
+========================================= */
+
+.clinic-info p {
+  margin: 0.35rem 0;
+
+  color: var(--qc-slate);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   DOCTOR / TIMING / CONTACT COLUMNS
+========================================= */
+
+.doctor-details,
+.clinic-timing,
+.contact-details {
+  position: relative;
+
+  border-left: 1px solid var(--qc-line);
+  padding-left: 1.8rem;
+
+  transition: border-color 0.3s ease;
+}
+
+.doctor-details:hover,
+.clinic-timing:hover,
+.contact-details:hover {
+  border-left-color: var(--qc-teal);
+}
+
+
+/* =========================================
+   CLINIC STATUS (live "open now" indicator)
+   — same live-dot language as the hero badge
+========================================= */
+
+.clinic-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  margin: 0.2rem 0 0.5rem;
+  padding: 0.3rem 0.7rem;
+
+  background: var(--qc-mist-2);
+  border-radius: 999px;
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: var(--qc-teal-deep);
+}
+
+.clinic-status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+
+  background: var(--qc-coral);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .clinic-status__dot {
+    animation: livePulse 1.8s ease-out infinite;
+  }
+}
+
+
+/* =========================================
+   SERVICES SECTION
+========================================= */
+
+.services {
+  position: relative;
+  z-index: 1;
+
+  width: min(1100px, 90%);
+  margin: 5rem auto 0;
+
+  text-align: center;
+}
+
+.services h2 {
+  margin-bottom: 0.8rem;
+
+  font-family: var(--qc-font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+
+  color: var(--qc-navy);
+  letter-spacing: -0.03em;
+
+  opacity: 0;
+  transform: translateY(16px);
+
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.services::after {
+  content: "Simple healthcare services designed around your convenience.";
+
+  display: block;
+
+  margin: 0 auto 2.5rem;
+
+  max-width: 600px;
+
+  color: var(--qc-slate);
+  font-size: 1rem;
+  line-height: 1.6;
+
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+
+/* =========================================
+   SERVICE GRID
+========================================= */
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+
+  padding-bottom: 1rem;
+}
+
+
+/* =========================================
+   SERVICE CARD
+========================================= */
+
+.service-card {
+  position: relative;
+
+  padding: 2rem 1.5rem;
+
+  background: var(--qc-paper);
+
+  border: 1px solid var(--qc-line);
+  border-radius: 18px;
+
+  box-shadow: 0 8px 25px rgba(11, 46, 51, 0.06);
+
+  opacity: 0;
+  transform: translateY(18px);
+
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+  overflow: hidden;
+}
+
+.service-list .service-card:nth-child(1) { animation-delay: 0.25s; }
+.service-list .service-card:nth-child(2) { animation-delay: 0.35s; }
+.service-list .service-card:nth-child(3) { animation-delay: 0.45s; }
+.service-list .service-card:nth-child(4) { animation-delay: 0.55s; }
+.service-list .service-card:nth-child(n+5) { animation-delay: 0.65s; }
+
+/* top accent line, sweeps in on hover */
+.service-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(90deg, var(--qc-teal), var(--qc-coral));
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.35s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #b9dddd;
+
+  box-shadow: 0 18px 40px rgba(11, 46, 51, 0.14);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:focus-visible {
+  outline: 2px solid var(--qc-coral);
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   SERVICE ICON CHIP (optional)
+========================================= */
+
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin-bottom: 1rem;
+
+  background: var(--qc-mist);
+  border-radius: 12px;
+
+  color: var(--qc-teal);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.service-icon svg {
+  width: 20px;
+  height: 20px;
+
+  stroke: currentColor;
+  fill: none;
+}
+
+.service-card:hover .service-icon {
+  background: var(--qc-teal);
+  color: var(--qc-paper);
+
+  transform: scale(1.08) rotate(-4deg);
+}
+
+
+/* =========================================
+   SERVICE TEXT
+========================================= */
+
+.service-card h3 {
+  margin-bottom: 0.8rem;
+
+  font-family: var(--qc-font-display);
+  color: var(--qc-navy);
+
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.service-card p {
+  margin: 0;
+
+  color: var(--qc-slate);
+
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(255, 107, 78, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clinic-header,
+  .doctor-details,
+  .clinic-timing,
+  .contact-details,
+  .services h2,
+  .services::after,
+  .service-card,
+  .clinic-status__dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .clinic-info {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2.5rem;
+  }
+
+  .doctor-details,
+  .clinic-timing,
+  .contact-details {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .service-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .clinic-main {
+    padding-bottom: 3rem;
+  }
+
+  .clinic-info {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+
+    padding: 2rem 1.25rem;
+  }
+
+  .clinic-header,
+  .doctor-details,
+  .clinic-timing,
+  .contact-details {
+    padding: 0;
+  }
+
+  .clinic-info h2 {
+    font-size: 2rem;
+  }
+
+  .clinic-info p {
+    font-size: 0.95rem;
+  }
+
+  .services {
+    width: 92%;
+    margin-top: 3.5rem;
+  }
+
+  .services h2 {
+    font-size: 2.1rem;
+  }
+
+  .service-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .service-card {
+    padding: 1.6rem 1.25rem;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .clinic-info {
+    padding: 1.5rem 1rem;
+  }
+
+  .clinic-info h2 {
+    font-size: 1.75rem;
+  }
+
+  .services h2 {
+    font-size: 1.9rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
+
+  .service-icon {
+    width: 38px;
+    height: 38px;
+  }
+}

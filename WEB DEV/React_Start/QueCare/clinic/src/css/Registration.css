@@ -1,0 +1,713 @@
+/* =========================================================
+   QUEUECARE — REGISTRATION PAGE
+   ---------------------------------------------------------
+   Same design system as hero.css / home.css / navbar.css.
+   The "currently serving" number is the real hero of this
+   page — it's the actual live ticket a patient is waiting
+   on — so it gets the mono ticket-number treatment and a
+   quiet pulse ring, echoing the hero's live badge.
+========================================================= */
+
+:root {
+  --qc-navy:      #0B2E33;
+  --qc-teal:      #146F6C;
+  --qc-teal-deep: #0D5451;
+  --qc-mist:      #EAF7F5;
+  --qc-mist-2:    #DCF0ED;
+  --qc-paper:     #FFFFFF;
+  --qc-coral:     #FF6B4E;
+  --qc-coral-deep:#E85536;
+  --qc-slate:     #5B7280;
+  --qc-line:      #D7ECE9;
+  --qc-danger:    #C94B47;
+  --qc-danger-bg: #FFF8F8;
+
+  --qc-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --qc-font-body:     "Inter", "Segoe UI", system-ui, sans-serif;
+  --qc-font-mono:     "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+
+/* =========================================
+   PAGE GRID
+========================================= */
+
+.registration {
+  position: relative;
+
+  min-height: calc(100vh - 70px);
+
+  padding: 4rem 7%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+
+  align-items: center;
+
+  background:
+    radial-gradient(circle at 10% 90%, rgba(255, 107, 78, 0.05) 0, transparent 40%),
+    var(--qc-mist);
+
+  font-family: var(--qc-font-body);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   LEFT — LIVE QUEUE
+========================================= */
+
+.registration-left {
+  padding: 3rem;
+
+  background: var(--qc-paper);
+
+  border: 1px solid var(--qc-line);
+  border-radius: 22px;
+
+  box-shadow: 0 12px 35px rgba(11, 46, 51, 0.08);
+
+  animation: registrationFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.queue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 0.6rem;
+}
+
+.queue-header h2 {
+  margin: 0;
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-display);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.live-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.45rem 0.8rem;
+
+  border: 1px solid #bce5df;
+  border-radius: 999px;
+
+  background: var(--qc-mist-2);
+
+  color: var(--qc-teal-deep);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.live-status::before {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+
+  background: var(--qc-coral);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .live-status::before {
+    animation: livePulse 1.8s ease-out infinite;
+  }
+}
+
+.queue-message {
+  margin: 0;
+
+  color: var(--qc-slate);
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CURRENTLY SERVING — the ticket
+========================================= */
+
+.queue-current {
+  position: relative;
+
+  margin: 2rem 0;
+
+  padding: 2.4rem 1.5rem;
+
+  text-align: center;
+
+  background: linear-gradient(145deg, var(--qc-mist-2), #F7FBFB);
+
+  border: 1px solid #d8eeeb;
+  border-radius: 20px;
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  overflow: hidden;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* faint pulse ring, same sonar motif as the hero */
+.queue-current::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 140px;
+  height: 140px;
+
+  border: 1.5px solid var(--qc-teal);
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%) scale(0.9);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .queue-current::before {
+    animation: sonarPing 3s ease-out infinite;
+  }
+}
+
+@keyframes sonarPing {
+  0%   { opacity: 0.3; transform: translate(-50%, -50%) scale(0.7); }
+  70%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+.queue-current:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(20, 111, 108, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.queue-current p {
+  position: relative;
+  z-index: 1;
+
+  margin: 0 0 0.5rem;
+
+  color: var(--qc-slate);
+
+  font-family: var(--qc-font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.queue-current h1 {
+  position: relative;
+  z-index: 1;
+
+  margin: 0.4rem 0;
+
+  color: var(--qc-teal-deep);
+
+  font-family: var(--qc-font-mono);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.queue-current span {
+  position: relative;
+  z-index: 1;
+
+  color: #486579;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   QUEUE DETAILS
+========================================= */
+
+.queue-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 1rem;
+}
+
+.queue-item {
+  padding: 1.25rem 0.7rem;
+
+  text-align: center;
+
+  background: #f8fafb;
+
+  border: 1px solid #e7eeee;
+  border-radius: 15px;
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  animation: registrationFade 0.5s ease forwards;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.queue-item:nth-child(1) { animation-delay: 0.15s; }
+.queue-item:nth-child(2) { animation-delay: 0.25s; }
+.queue-item:nth-child(3) { animation-delay: 0.35s; }
+
+.queue-item:hover {
+  transform: translateY(-3px);
+
+  border-color: #c8e5e2;
+
+  box-shadow: 0 8px 20px rgba(11, 46, 51, 0.08);
+}
+
+.queue-item span {
+  display: block;
+
+  margin-bottom: 0.45rem;
+
+  color: var(--qc-slate);
+
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.queue-item strong {
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.queue-note {
+  margin: 1.5rem 0 0;
+
+  text-align: center;
+
+  color: #94a3b8;
+
+  font-size: 0.88rem;
+}
+
+
+/* =========================================
+   CANCEL QUEUE
+========================================= */
+
+.cancel-queue-btn {
+  display: block;
+
+  margin: 1.2rem auto 0;
+
+  padding: 0.7rem 1.3rem;
+
+  border: 1px solid #e5a3a0;
+  border-radius: 999px;
+
+  background: var(--qc-danger-bg);
+
+  color: var(--qc-danger);
+
+  font-size: 0.9rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cancel-queue-btn:hover {
+  background: var(--qc-danger);
+
+  color: var(--qc-paper);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(201, 75, 71, 0.22);
+}
+
+.cancel-queue-btn:focus-visible {
+  outline: 2px solid var(--qc-danger);
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   RIGHT — REGISTRATION FORM
+========================================= */
+
+.registration-right {
+  padding: 3rem;
+
+  background: var(--qc-paper);
+
+  border: 1px solid var(--qc-line);
+  border-radius: 22px;
+
+  box-shadow: 0 12px 35px rgba(11, 46, 51, 0.08);
+
+  animation: registrationFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.registration-header {
+  margin-bottom: 2rem;
+}
+
+.registration-header h1 {
+  margin: 0 0 0.6rem;
+
+  color: var(--qc-navy);
+
+  font-family: var(--qc-font-display);
+  font-size: clamp(2.3rem, 4vw, 3rem);
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.registration-header p {
+  margin: 0;
+
+  color: var(--qc-slate);
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.15rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.45rem;
+}
+
+.form-group label {
+  color: #294b60;
+
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 0.85rem 1rem;
+
+  border: 1.5px solid #dce6e9;
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #fbfdfd;
+
+  color: var(--qc-navy);
+
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0adb5;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: #b8d4d4;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--qc-teal);
+
+  background: var(--qc-paper);
+
+  box-shadow: 0 0 0 4px rgba(20, 111, 108, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+
+/* =========================================
+   JOIN QUEUE BUTTON
+========================================= */
+
+.registration-form button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  width: 100%;
+
+  margin-top: 0.7rem;
+
+  padding: 0.95rem 1.5rem;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, var(--qc-teal) 0%, var(--qc-teal-deep) 100%);
+
+  color: var(--qc-paper);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.registration-form button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+
+  width: 40%;
+  height: 100%;
+
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+}
+
+.registration-form button:hover::after {
+  animation: shineSweep 0.9s ease forwards;
+}
+
+.registration-form button span {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.25rem;
+}
+
+.registration-form button:hover {
+  background: linear-gradient(135deg, var(--qc-teal-deep) 0%, #0a4644 100%);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 22px rgba(20, 111, 108, 0.25);
+}
+
+.registration-form button:active {
+  transform: translateY(0);
+}
+
+.registration-form button:focus-visible {
+  outline: 2px solid var(--qc-coral);
+  outline-offset: 3px;
+}
+
+@keyframes shineSweep {
+  to { left: 130%; }
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes registrationFade {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(255, 107, 78, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 78, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registration-left,
+  .registration-right,
+  .queue-item,
+  .live-status::before,
+  .queue-current::before {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .registration {
+    grid-template-columns: 1fr;
+
+    padding: 3rem 6%;
+
+    gap: 2.5rem;
+
+    align-items: start;
+  }
+
+  .registration-left,
+  .registration-right {
+    width: 100%;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .registration {
+    padding: 2rem 5%;
+
+    gap: 1.5rem;
+  }
+
+  .registration-left,
+  .registration-right {
+    padding: 1.5rem;
+
+    border-radius: 18px;
+  }
+
+  .queue-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .live-status {
+    padding: 0.35rem 0.65rem;
+
+    font-size: 0.68rem;
+  }
+
+  .queue-current {
+    margin: 1.5rem 0;
+
+    padding: 1.7rem 1rem;
+  }
+
+  .queue-current h1 {
+    font-size: 3.2rem;
+  }
+
+  .queue-details {
+    grid-template-columns: 1fr;
+  }
+
+  .queue-item {
+    padding: 1rem;
+  }
+
+  .registration-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .registration-header p {
+    font-size: 0.92rem;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .registration {
+    padding: 1.5rem 4%;
+  }
+
+  .registration-left,
+  .registration-right {
+    padding: 1.25rem;
+  }
+
+  .queue-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .queue-current h1 {
+    font-size: 2.8rem;
+  }
+
+  .registration-header h1 {
+    font-size: 2rem;
+  }
+}
