@@ -1,0 +1,9 @@
+.main{
+  background-color: lightcoral;
+  color: darkblue;
+  font-family: Arial, sans-serif;
+  border-radius: 3px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.main-container {
+  width: 70%;
+  margin: 40px auto;
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.user-box {
+  flex: 1;
+  min-height: 300px;
+  padding: 25px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+}
+
+.link{
+  margin-left: 45px;
+  color: rgb(213, 90, 29);
+}
+.user-box h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.user-box input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ffcbcb;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+}
+
+.user-box input:focus {
+  border-color: #0b2866;
+}
+
+.user-box .add {
+  margin-top: 12px;
+  padding: 10px 22px;
+  background-color: #7c828e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+.user-item{
+  background-color: rgb(225, 214, 255);
+  font-size: larger;
+  padding: 14px;
+  color: rgb(65, 15, 215);
+  border: 2px solid blueviolet;
+}
+
+.remove {
+ margin-top: 12px;
+  padding: 10px 22px;
+  background-color: #de651e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+@media (max-width: 700px) {
+  .main-container {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .user-box {
+    width: 100%;
+  }
+}
+
+.user{
+
+  flex: 1;
+  min-height: 80px;
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+}
+
+button{
+  padding: 10px;
+  background: red;
+  border-radius:4px;
+  outline: none;
+}
+
+.todobtn{
+  margin-top: 15px;
+  background-color: lightsalmon;
+  color: black;
+}
+
+.removebtn{
+ margin-top: 12px;
+  padding: 10px 22px;
+  background-color: #de651e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-size: xx-large;
+  color: #222;
+  text-align: center;
+}
+
+.user_list_api{
+  color: lightgreen;
+  font-size: xx-large;
+  position: relative;
+ bottom: 110px;
+}
